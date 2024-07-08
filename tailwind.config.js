@@ -19,7 +19,7 @@ export default {
         noto: ["Noto Serif", "serif"],
       },
       backgroundImage: {
-        hero: "url('./assets/heroBanner.png')",
+        hero: "url('/assets/heroBanner.png')",
         heromobile:
           "url('https://res.cloudinary.com/debgkcg8v/image/upload/v1720464118/Group_1321314349_1_na0hrh.png')",
         yellow: " linear-gradient(135deg, #A88F38 0%, #FDD137 83.33%)",
