@@ -2,18 +2,20 @@ import React from "react";
 
 function Categories() {
   return (
-    <section>
+    <section className="px-3">
       <div className="text-textClr flex justify-between mt-10">
         <div className="block">
-          <h2 className="text-3xl font-semibold">Shop by category</h2>
+          <h2 className="text-[20px]  whitespace-nowrap sm:text-3xl font-semibold">
+            Shop by category
+          </h2>
           <p>Each Crafted To Perfection</p>
         </div>
-        <button>SEE ALL</button>
+        <button className="underline whitespace-nowrap">SEE ALL</button>
       </div>
 
       {/* CATEGORIES LIST */}
 
-      <article className="my-6 grid grid-cols-2  lg:grid-cols-4 gap-5 place-items-center text-center ">
+      <article className="my-6 grid grid-cols-2  lg:grid-cols-4 gap-3 sm:gap-5 place-items-center text-center ">
         <div>
           <img src="/assets/category2.png" />
           <button className="border-b-2 mt-2 border-textClr uppercase font-medium ">
