@@ -93,7 +93,7 @@ const Footer = () => {
         </div>
       </div>
       <hr />
-      <div className=" w-full text-center py-1.5">
+      <div className=" w-full text-sm text-center py-1.5">
         <p>© 2024 yeeshadev, All Rights Reserved</p>
       </div>
     </div>
