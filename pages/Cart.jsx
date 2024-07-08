@@ -84,7 +84,7 @@ function Cart() {
         </article>
       </section>
       {/** MOBILE CART */}
-      <section>
+      <section className="md:hidden block">
         <div className="font-semibold mx-3 mb-5  bg-textClr/10 flex justify-between py-2 px-3">
           <p>SUBTOTAL (3 Items)</p>
           <p>$124.00</p>
@@ -138,7 +138,7 @@ function Cart() {
           </Link>
           <Link
             to="/"
-            className="border-b-2 w-[50%] mt-3 text-sm border-lightGray uppercase flex-center mx-auto "
+            className="border-b-2 w-[150px] mt-3 text-sm border-lightGray uppercase flex-center mx-auto "
           >
             Continue shopping
           </Link>

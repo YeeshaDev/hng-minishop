@@ -49,7 +49,7 @@ function ProductDetails() {
           {/** PODUCT DESCRIPTION, REVIEWS */}
           <div className="my-5 px-3 md:px-0">
             <div className="flex items-start text-sm sm:text-[1rem] overflow-x-scroll w-full gap-x-5 sm:gap-x-2 justify-between py-5 text-lightGray ">
-              <p className="relative after:absolute after:w-full   after:h-1  after:bg-textClr/70  after:-bottom-5 after:left-0 ">
+              <p className="relative after:absolute after:w-full   after:h-1 !text-textClr font-medium after:bg-textClr/80  after:-bottom-4 after:left-0 ">
                 DESCRIPTION
               </p>
               <p className="whitespace-nowrap">ADDITIONAL INFORMATON</p>
@@ -248,4 +248,3 @@ function ProductDetails() {
   );
 }
 export default ProductDetails;
-//https://res.cloudinary.com/debgkcg8v/image/upload/v1720438566/Group_82_2_ehoqa2.png
