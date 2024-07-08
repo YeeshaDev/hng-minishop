@@ -138,7 +138,7 @@ function Cart() {
           </Link>
           <Link
             to="/"
-            className="border-b-2 w-[150px] mt-3 text-sm border-lightGray uppercase flex-center mx-auto "
+            className="border-b-2 w-[160px] mt-3 text-sm border-lightGray uppercase flex-center mx-auto "
           >
             Continue shopping
           </Link>
