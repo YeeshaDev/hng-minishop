@@ -7,10 +7,10 @@ import { Link } from "react-router-dom";
 function ProductDetails() {
   return (
     <main>
-      <section className="md:flex justify-between gap-x-16 mt-8">
+      <section className="lg:flex justify-between gap-x-16 mt-8">
         {/* PRODUCT IMAGES */}
-        <article className="w-full md:max-w-[53%] px-3 lg:px-0">
-          <div className="flex flex-col md:flex-row-reverse gap-4 ">
+        <article className="w-full lg:max-w-[53%] px-3 lg:px-0">
+          <div className="flex flex-col lg:flex-row-reverse justify-center gap-4 ">
             {/* PRODUCT IMAGES - LARGE IMAGE */}
             <div className="max-w-[600px] w-full">
               <img
@@ -19,7 +19,7 @@ function ProductDetails() {
               />
             </div>
             {/* PRODUCT IMAGES - THUMBNAILS */}
-            <div className="flex md:flex-col overflow-x-auto sm:mt-3 gap-3 gap-y-8">
+            <div className="flex lg:flex-col overflow-x-auto sm:mt-3 gap-3 gap-y-8">
               <img
                 width={120}
                 height={110}
@@ -47,7 +47,7 @@ function ProductDetails() {
             </div>
           </div>
           {/** PODUCT DESCRIPTION, REVIEWS */}
-          <div className="my-5 px-3 md:px-0">
+          <div className="my-5 px-3 lg:px-0">
             <div className="flex items-start text-sm sm:text-[1rem] overflow-x-scroll w-full gap-x-5 sm:gap-x-2 justify-between py-5 text-lightGray ">
               <p className="relative after:absolute after:w-full   after:h-1 !text-textClr font-medium after:bg-textClr/80  after:-bottom-4 after:left-0 ">
                 DESCRIPTION
@@ -67,7 +67,7 @@ function ProductDetails() {
         </article>
 
         {/** PRODUCT INFORMATION */}
-        <article className=" w-full lg:max-w-[45%] px-5  md:px-0">
+        <article className=" w-full lg:max-w-[45%] px-5  lg:px-0">
           <div className="">
             <h3 className="text-2xl mb-3 font-semibold">Chain Bracelet</h3>
             <p className="text-red-600 font-medium space-x-3">
