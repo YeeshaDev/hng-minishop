@@ -20,6 +20,10 @@ export default {
       },
       backgroundImage: {
         hero: "url('./assets/heroBanner.png')",
+        heromobile:
+          "url('https://res.cloudinary.com/debgkcg8v/image/upload/v1720464118/Group_1321314349_1_na0hrh.png')",
+        yellow: " linear-gradient(135deg, #A88F38 0%, #FDD137 83.33%)",
+        gray: "linear-gradient(135deg, #545454 0%, #D9D9D9 83.33%)",
       },
     },
   },

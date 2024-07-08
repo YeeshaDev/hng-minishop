@@ -1,38 +1,29 @@
 import { useEffect, useState } from "react";
-//import { navbar } from "../data/Data";
 import { Link } from "react-router-dom";
-//import { useSelector } from "react-redux";
 import { IoCartOutline, IoSearchOutline } from "react-icons/io5";
 import { MdOutlineShoppingBag } from "react-icons/md";
-import {
-  HiOutlineHeart,
-  HiOutlineUser,
-  HiMenu,
-  HiX,
-  HiOutlineSearchCircle,
-} from "react-icons/hi";
+import { HiOutlineUser, HiX, HiOutlineSearchCircle } from "react-icons/hi";
 import { HiBars3 } from "react-icons/hi2";
-//import Sidebar from "./Sidebar";
 
 const navbarItems = [
   {
     id: 2,
-    path: "/shop",
+    path: "/",
     nav: "Products",
   },
   {
     id: 3,
-    path: "/blog",
+    path: "/",
     nav: "Collections",
   },
   {
     id: 4,
-    path: "/about",
+    path: "/",
     nav: "Gifts",
   },
   {
     id: 5,
-    path: "/about",
+    path: "/",
     nav: "Special Deals",
   },
   {
@@ -44,7 +35,6 @@ const navbarItems = [
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  //const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [sticky, setSticky] = useState(false);
 
   useEffect(() => {
@@ -58,14 +48,9 @@ const Navbar = () => {
     };
   }, []);
 
-  /* const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };*/
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
-
-  // const { totalItems } = useSelector((state) => state.cart);
 
   return (
     <>
@@ -99,30 +84,30 @@ const Navbar = () => {
           {/* Icons */}
           <div className="flex items-center space-x-5">
             <Link
-              to="/wishlist"
+              to="/"
               className="text-lg border w-7 h-7 rounded-full flex-center"
             >
               <IoSearchOutline />
             </Link>
 
-            <div className="relative text-lg border w-7 h-7 rounded-full flex-center">
-              <IoCartOutline />
-              {/*<div className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-red-500 text-white text-sm flex items-center justify-center">
-                1
-          </div>*/}
-            </div>
             <Link
-              to="/wishlist"
-              className="text-lg border w-6 h-6 rounded-full flex-center"
+              to="/cart"
+              className="relative text-lg border w-7 h-7 rounded-full flex-center"
             >
-              <HiBars3 />
+              <IoCartOutline />
             </Link>
+            <div className="hidden md:flex items-center justify-center text-lg border w-6 h-6 rounded-full ">
+              <HiBars3 />
+            </div>
             {/* Mobile menu button */}
 
             <div className="md:hidden flex items-center">
-              <button onClick={toggleMobileMenu} className="text-3xl">
-                {isMobileMenuOpen ? "" : <HiMenu />}
-              </button>
+              <div
+                onClick={toggleMobileMenu}
+                className="text-lg border w-6 h-6 rounded-full flex items-center justify-center"
+              >
+                <HiBars3 />
+              </div>
             </div>
           </div>
         </div>
@@ -130,54 +115,46 @@ const Navbar = () => {
 
       {/* Mobile navigation menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden w-1/2 h-full fixed transition-all delay-150 duration-200 top-0 z-[99] bg-white text-black/90 ">
+        <div className="md:hidden w-full h-full fixed transition-all delay-150 duration-200 top-0 z-[99] py-5 bg-white text-black/90 ">
           <div className="flex items-center justify-between px-5 ">
-            <div className="text-xl font-bold font-playwrite  my-5 ">
-              funiture
-            </div>
+            <Link to="/">
+              <div className="text-3xl font-bold !font-logo uppercase">
+                Jereng
+              </div>
+            </Link>
             <span className="text-[1.5rem]" onClick={toggleMobileMenu}>
               <HiX />
             </span>
           </div>
-          <div className="flex flex-col space-y-4 p-4">
+          <div className="flex flex-col gap-y-4 p-4 my-5">
             {navbarItems.map((nav, key) => (
               <Link
                 key={key}
-                className="text-xl"
+                className="text-lg"
                 to={nav.path}
                 onClick={toggleMobileMenu}
               >
                 {nav.nav}
               </Link>
             ))}
-            <Link
-              to="/wishlist"
-              className="text-xl flex items-center space-x-2"
-              onClick={toggleMobileMenu}
-            >
-              <IoSearchOutline />
-              <span>Wishlist</span>
+            <hr className="pb-4" />
+
+            <Link to="/" className="text-lg flex items-center space-x-2">
+              <HiOutlineUser />
+              <span>My Account</span>
             </Link>
+
             <Link
-              to="/profile"
-              className="text-xl flex items-center space-x-2"
+              to="/"
+              className="text-lg flex items-center space-x-2"
               onClick={toggleMobileMenu}
             >
               <HiOutlineUser />
-              <span>Profile</span>
+              <span>Logout</span>
             </Link>
-            <div className="relative text-2xl">
-              <MdOutlineShoppingBag />
-              <div className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-red-500 text-white text-sm flex items-center justify-center">
-                1
-              </div>
-            </div>
           </div>
         </div>
       )}
-
-      {/* Sidebar for the cart 
-      <Sidebar isSidebarOpen={isSidebarOpen} closeSidebar={toggleSidebar} />*/}
     </>
   );
 };
