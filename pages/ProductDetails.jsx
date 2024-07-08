@@ -10,7 +10,7 @@ function ProductDetails() {
       <section className="md:flex justify-between gap-x-16 mt-8">
         {/* PRODUCT IMAGES */}
         <article className="w-full md:max-w-[53%] px-3 lg:px-0">
-          <div className="flex flex-col lg:flex-row-reverse gap-4 ">
+          <div className="flex flex-col md:flex-row-reverse gap-4 ">
             {/* PRODUCT IMAGES - LARGE IMAGE */}
             <div className="max-w-[600px] w-full">
               <img
@@ -19,7 +19,7 @@ function ProductDetails() {
               />
             </div>
             {/* PRODUCT IMAGES - THUMBNAILS */}
-            <div className="flex sm:flex-col overflow-x-auto sm:mt-3 gap-3 gap-y-8">
+            <div className="flex md:flex-col overflow-x-auto sm:mt-3 gap-3 gap-y-8">
               <img
                 width={120}
                 height={110}
