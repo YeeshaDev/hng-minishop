@@ -4,6 +4,7 @@ import { IoCartOutline, IoSearchOutline } from "react-icons/io5";
 import { MdOutlineShoppingBag } from "react-icons/md";
 import { HiOutlineUser, HiX, HiOutlineSearchCircle } from "react-icons/hi";
 import { HiBars3 } from "react-icons/hi2";
+import { HiLogout } from "react-icons/hi";
 
 const navbarItems = [
   {
@@ -149,7 +150,7 @@ const Navbar = () => {
               className="text-lg flex items-center space-x-2"
               onClick={toggleMobileMenu}
             >
-              <HiOutlineUser />
+              <HiLogout />
               <span>Logout</span>
             </Link>
           </div>
