@@ -14,6 +14,9 @@ function Products() {
         </div>
         <button className="text-secondary font-semibold">See all</button>
       </div>
+
+      {/** PRODUCT LISTINGS */}
+
       <article className="my-6 grid grid-cols-2  lg:grid-cols-4 gap-3 sm:gap-5 place-items-center text-sm ">
         {[1, 2, 3, 4, 5, 6, 7, 8].map((index) => (
           <div key={index} className=" relative">
