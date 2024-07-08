@@ -100,7 +100,7 @@ function Checkout() {
               <div className="flex justify-between">
                 <div>
                   <p className="flex items-center  gap-x-2 text-sm">
-                    <IoMdRadioButtonOn /> <span>Direct Bank transfer</span>
+                    <IoMdRadioButtonOn /> <span>Credit card</span>
                   </p>
                   <p className="text-lightGray text-[12px]">
                     Pay with your Visa or Master card
@@ -121,10 +121,7 @@ function Checkout() {
                 <IoMdRadioButtonOff /> <span>Cash on Delivery</span>
               </p>
 
-              <p className="flex justify-between gap-x-10 ">
-                TOTAL{" "}
-                <span className="text-textClr text-lg font-bold">$117.60</span>
-              </p>
+ 
               {/** CARD DETAILS FORM */}
               <div className="text-text-clr font-light">
                 <h4>Fill in your details</h4>
@@ -158,7 +155,7 @@ function Checkout() {
                     Please review the order details and payment details before
                     proceeding to confirm your order{" "}
                   </p>
-                  <p className="flex items-center gap-x-2">
+                  <p className="flex items-start gap-x-2">
                     <IoMdRadioButtonOff />{" "}
                     <span>
                       I agree to the{" "}
