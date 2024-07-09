@@ -231,7 +231,7 @@ function ProductDetails() {
           />
         </div>
 
-        <div className="lg:max-w-[50%] mt-3 sm:mt-0 space-y-3 px-3  md:text-lg text-textClr">
+        <div className="lg:max-w-[50%] mt-3 sm:mt-0 flex flex-col gap-y-5 px-3  md:text-lg text-textClr">
           <span>ABOUT THE COLLECTION</span>
           <h3 className="!font-noto font-semibold text-3xl">Bhiriani</h3>
           <p classNmae="pb-6 tracking-wider text-sm leading-[3]">
@@ -239,7 +239,7 @@ function ProductDetails() {
             arcu tristique et morbi. Lorem ipsum dolor sit amet consectetur. Sed
             commodo pellentesque arcu tristique et morbi.
           </p>
-          <Link to="/" className=" text-center !mt-6 bg-purpleClr py-2 px-4 text-white uppercase font-medium ">
+          <Link to="/" className=" text-center !mt-5 bg-purpleClr py-2 px-4 text-white uppercase font-medium ">
             shop now
           </Link>
         </div>
