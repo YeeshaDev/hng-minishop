@@ -239,7 +239,7 @@ function ProductDetails() {
             arcu tristique et morbi. Lorem ipsum dolor sit amet consectetur. Sed
             commodo pellentesque arcu tristique et morbi.
           </p>
-          <Link to="/" className=" text-center !mt-5 bg-purpleClr py-2 px-4 text-white uppercase font-medium ">
+          <Link to="/" className=" text-center !mt-5 w-[130px] bg-purpleClr py-2 px-4 text-white uppercase font-medium ">
             shop now
           </Link>
         </div>
