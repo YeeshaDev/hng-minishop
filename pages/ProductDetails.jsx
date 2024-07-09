@@ -52,7 +52,7 @@ function ProductDetails() {
               <p className="relative after:absolute after:w-full   after:h-1 !text-textClr font-medium after:bg-textClr/80  after:-bottom-4 after:left-0 ">
                 DESCRIPTION
               </p>
-              <p className="whitespace-nowrap">ADDITIONAL INFORMATON</p>
+              <p className="whitespace-nowrap">ADDITIONAL INFORMATION</p>
               <p className="whitespace-nowrap">REVIEWS (0)</p>
             </div>
 
@@ -203,10 +203,10 @@ function ProductDetails() {
               <span className="absolute top-3 right-3 text-lg text-[#303237]">
                 <LuHeart />
               </span>
-              <Link to="product_details">
+              <Link to="/product_details">
                 <img src="/assets/category2.png" alt="similar products" />
               </Link>
-              <Link to="product_details">
+              <Link to="/product_details">
                 <div className="mt-3">
                   <p className="text-lightGray">-20% BLACK FRIDAY</p>
                   <p className="text-textClr font-semibold uppercase">
@@ -239,9 +239,9 @@ function ProductDetails() {
             arcu tristique et morbi. Lorem ipsum dolor sit amet consectetur. Sed
             commodo pellentesque arcu tristique et morbi.
           </p>
-          <button className=" text-center !mt-6 bg-purpleClr py-2 px-4 text-white uppercase font-medium ">
+          <Link to="/" className=" text-center !mt-6 bg-purpleClr py-2 px-4 text-white uppercase font-medium ">
             shop now
-          </button>
+          </Link>
         </div>
       </section>
     </main>
