@@ -1,10 +1,13 @@
-import { LuHeart, LuMinus, LuPlus, LuStar, LuStarOff } from "react-icons/lu";
+import { LuHeart, LuMinus, LuPlus } from "react-icons/lu";
 import Banner from "../src/components/common/Banner";
 import { MdOutlineStarOutline, MdOutlineStarPurple500 } from "react-icons/md";
 import { IoCartOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
 function ProductDetails() {
+//api key - 5e6e3e3efa3641fb96eee48621639a9920240712165433834602
+//apid id - N4HG6J7NO3W3NMR
+//organization id - 14190a5309024744a55c21e9e8b2ca7f
   return (
     <main>
       <section className="lg:flex justify-between gap-x-16 mt-8">
@@ -234,7 +237,7 @@ function ProductDetails() {
         <div className="lg:max-w-[50%] mt-3 sm:mt-0 flex flex-col gap-y-5 px-3  md:text-lg text-textClr">
           <span>ABOUT THE COLLECTION</span>
           <h3 className="!font-noto font-semibold text-3xl">Bhiriani</h3>
-          <p classNmae="pb-6 tracking-wider text-sm leading-[3]">
+          <p className="pb-6 tracking-wider text-sm leading-[3]">
             Lorem ipsum dolor sit amet consectetur. Sed commodo pellentesque
             arcu tristique et morbi. Lorem ipsum dolor sit amet consectetur. Sed
             commodo pellentesque arcu tristique et morbi.
