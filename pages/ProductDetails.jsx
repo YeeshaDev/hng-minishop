@@ -1,80 +1,77 @@
 import { LuHeart, LuMinus, LuPlus } from "react-icons/lu";
 import Banner from "../src/components/common/Banner";
+import Products from "../src/components/common/Products";
+import { useProductDetails } from "../src/utils/getProducts";
 import { MdOutlineStarOutline, MdOutlineStarPurple500 } from "react-icons/md";
 import { IoCartOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, updateQuantity } from "../src/redux/cartSlice";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import ProductGallery from "../src/components/ProductGallery";
+import ProductTab from '../src/components/ProductTab'
 
 function ProductDetails() {
-//api key - 5e6e3e3efa3641fb96eee48621639a9920240712165433834602
-//apid id - N4HG6J7NO3W3NMR
-//organization id - 14190a5309024744a55c21e9e8b2ca7f
+  const { id } = useParams();
+  const { data: productDet, error, isLoading } = useProductDetails(id);
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart.data);
+  const existingProduct = cart.find((product) => product.id === productDet?.id);
+  const [quantity, setQuantity] = useState(
+    existingProduct ? existingProduct?.quantity : 1
+  );
+
+  if (isLoading) return <p className='flex items-center py-10 justify-center m-auto'>Loading product details...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  const handleAddToCart = () => {
+    if (existingProduct) {
+      dispatch(updateQuantity({ id: productDet.id, quantity }));
+      toast.success("Cart updated successfully!");
+    } else {
+      dispatch(
+        addToCart({
+          id: productDet.id,
+          name: productDet.name,
+          price: productDet.current_price,
+          image: `https://api.timbu.cloud/images/${productDet?.photos[0]?.url}`,
+          quantity,
+          totalPrice: productDet.current_price * quantity,
+        })
+      );
+      //toast.success("Item added to cart successfully!");
+    }
+  };
+
+  const incrementQuantity = () => {
+    setQuantity((prevQuantity) => prevQuantity + 1);
+  };
+
+  const decrementQuantity = () => {
+    setQuantity((prevQuantity) => Math.max(1, prevQuantity - 1));
+  };
+
+  console.log("product details", productDet);
+
+  
   return (
     <main>
       <section className="lg:flex justify-between gap-x-16 mt-8">
-        {/* PRODUCT IMAGES */}
         <article className="w-full lg:max-w-[53%] px-3 lg:px-0">
-          <div className="flex flex-col lg:flex-row-reverse justify-center gap-4 ">
-            {/* PRODUCT IMAGES - LARGE IMAGE */}
-            <div className="max-w-[600px] w-full">
-              <img
-                src="/assets/category2.png"
-                className="w-full object-cover"
-              />
-            </div>
-            {/* PRODUCT IMAGES - THUMBNAILS */}
-            <div className="flex lg:flex-col overflow-x-auto sm:mt-3 gap-3 gap-y-8">
-              <img
-                width={120}
-                height={110}
-                src="/assets/category2.png"
-                className="border-2 border-textClr"
-              />
-              <img
-                width={120}
-                height={110}
-                src="/assets/category2.png"
-                className="hover:border-2 hover:border-textClr"
-              />
-              <img
-                width={120}
-                height={110}
-                src="/assets/category2.png"
-                className="hover:border-2 hover:border-textClr"
-              />
-              <img
-                width={120}
-                height={110}
-                src="/assets/category2.png"
-                className="hover:border-2 hover:border-textClr"
-              />
-            </div>
-          </div>
+          {/* PRODUCT IMAGES */}
+          <ProductGallery productDet={productDet} />
           {/** PODUCT DESCRIPTION, REVIEWS */}
-          <div className="my-5 px-3 lg:px-0">
-            <div className="flex items-start text-sm sm:text-[1rem] overflow-x-scroll w-full gap-x-5 sm:gap-x-2 justify-between py-5 text-lightGray ">
-              <p className="relative after:absolute after:w-full   after:h-1 !text-textClr font-medium after:bg-textClr/80  after:-bottom-4 after:left-0 ">
-                DESCRIPTION
-              </p>
-              <p className="whitespace-nowrap">ADDITIONAL INFORMATION</p>
-              <p className="whitespace-nowrap">REVIEWS (0)</p>
-            </div>
-
-            <p className="py-6 text-lightGray">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-              placerat, augue a volutpat hendrerit, sapien tortor faucibus
-              augue, a maximus elit ex vitae libero. Sed quis mauris eget arcu
-              facilisis consequat sed eu felis. Nunc sed porta augue. Morbi
-              porta tempor odio, in molestie diam bibendum sed.
-            </p>
-          </div>
+         <ProductTab productDet={productDet} />
         </article>
 
         {/** PRODUCT INFORMATION */}
         <article className=" w-full lg:max-w-[45%] px-5  lg:px-0">
           <div className="">
-            <h3 className="text-2xl mb-3 font-semibold">Chain Bracelet</h3>
+            <h3 className="text-2xl mb-3 font-semibold">{productDet?.name}</h3>
             <p className="text-red-600 font-medium space-x-3">
-              4.75$ <strike className="text-lightGray">$7.50</strike>{" "}
+              ${productDet?.current_price}{" "}
+              <strike className="text-lightGray">$7.50</strike>{" "}
               <span className="bg-red-600 text-sm font-medium text-white rounded-xl px-2 py-1">
                 Save Now
               </span>
@@ -141,21 +138,22 @@ function ProductDetails() {
 
           <div className="flex items-center gap-x-5">
             <div className="border border-[#EEEEEE] px-4 py-3 flex-center gap-x-3 font-medium">
-              <button>
+              <button onClick={incrementQuantity}>
                 <LuPlus />
               </button>
-              <p>1</p>
-              <button>
+              <p>{quantity || 1}</p>
+              <button onClick={decrementQuantity}>
                 <LuMinus />
               </button>
             </div>
 
-            <Link
+            <button
               className="bg-black text-white w-2/3 py-3 flex-center px-4"
-              to="/cart"
+              //to="/cart"
+              onClick={handleAddToCart}
             >
               Add to cart
-            </Link>
+            </button>
           </div>
           <div>
             <button className="flex items-center    mt-8 gap-x-3">
@@ -191,41 +189,10 @@ function ProductDetails() {
       </section>
       <Banner />
       <section className="my-10 px-4">
-        <div className="flex-center !justify-between">
-          <div className="block ">
-            <h2 className="text-[22px] sm:text-3xl font-semibold">
-              Similar Products
-            </h2>
-            <p className="text-sm first-letter:">Each Crafted To Perfection</p>
-          </div>
-          <button className=" text-secondary font-semibold">See all</button>
-        </div>
-        <article className="my-6 grid grid-cols-2   lg:grid-cols-4 gap-3 sm:gap-5 place-items-center text-sm ">
-          {[1, 2, 3, 4].map((index) => (
-            <div key={index} className=" relative">
-              <span className="absolute top-3 right-3 text-lg text-[#303237]">
-                <LuHeart />
-              </span>
-              <Link to="/product_details">
-                <img src="/assets/category2.png" alt="similar products" />
-              </Link>
-              <Link to="/product_details">
-                <div className="mt-3">
-                  <p className="text-lightGray">-20% BLACK FRIDAY</p>
-                  <p className="text-textClr font-semibold uppercase">
-                    Sterling Silver Diamond adjustable Engagement Wedding Ring
-                  </p>
-                  <p className="text-red-600 font-medium">
-                    4.75$ <strike className="text-lightGray">$7.50</strike>{" "}
-                  </p>
-                </div>
-              </Link>
-            </div>
-          ))}
-        </article>
+        <Products heading='Similar Products' slice={[4,8]} />
       </section>
 
-      <section className="flex flex-col sm:flex-row items-center justify-center gap-6 my-10">
+      <section className="flex flex-col sm:flex-row items-center justify-center gap-6 my-8">
         <div className="lg:max-w-[50%]  sm:h-[400px]">
           <img
             src="/assets/whitebanner.png"
@@ -234,15 +201,18 @@ function ProductDetails() {
           />
         </div>
 
-        <div className="lg:max-w-[50%] mt-3 sm:mt-0 flex flex-col gap-y-5 px-3  md:text-lg text-textClr">
+        <div className="lg:max-w-[50%] sm:mt-0 flex flex-col gap-y-5 px-3  md:text-lg text-textClr">
           <span>ABOUT THE COLLECTION</span>
           <h3 className="!font-noto font-semibold text-3xl">Bhiriani</h3>
-          <p className="pb-6 tracking-wider text-sm leading-[3]">
+          <p className="pb-6 tracking-wider text-sm leading-[2]">
             Lorem ipsum dolor sit amet consectetur. Sed commodo pellentesque
             arcu tristique et morbi. Lorem ipsum dolor sit amet consectetur. Sed
             commodo pellentesque arcu tristique et morbi.
           </p>
-          <Link to="/" className=" text-center !mt-5 w-[130px] bg-purpleClr py-2 px-4 text-white uppercase font-medium ">
+          <Link
+            to="/"
+            className=" text-center  w-[150px] bg-purpleClr py-2 px-4 text-white uppercase font-medium "
+          >
             shop now
           </Link>
         </div>

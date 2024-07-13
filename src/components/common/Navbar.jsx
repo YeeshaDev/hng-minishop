@@ -5,11 +5,11 @@ import { MdOutlineShoppingBag } from "react-icons/md";
 import { HiOutlineUser, HiX, HiOutlineSearchCircle } from "react-icons/hi";
 import { HiBars3 } from "react-icons/hi2";
 import { HiLogout } from "react-icons/hi";
-
+import { useSelector } from "react-redux";
 const navbarItems = [
   {
     id: 2,
-    path: "/",
+    path: "/products",
     nav: "Products",
   },
   {
@@ -38,6 +38,9 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [sticky, setSticky] = useState(false);
 
+  //const cart = useSelector((state) => state.cart.data);
+  const {totalItems} = useSelector(
+    (state) => state.cart)
   useEffect(() => {
     const handleScroll = () => {
       setSticky(window.scrollY > 0);
@@ -74,7 +77,7 @@ const Navbar = () => {
             {navbarItems.map((nav, key) => (
               <Link
                 key={key}
-                className="active text-sm link-hover transition-all"
+                className="active text-sm hover:font-semibold text-text-Clr transition-all"
                 to={nav.path}
               >
                 {nav.nav}
@@ -96,6 +99,12 @@ const Navbar = () => {
               className="relative text-lg border w-7 h-7 rounded-full flex-center"
             >
               <IoCartOutline />
+              {
+                totalItems !== 0 &&
+              <div className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-red-500 text-white text-sm flex items-center justify-center">
+                {totalItems}
+              </div>
+               }
             </Link>
             <div className="hidden md:flex items-center justify-center text-lg border w-6 h-6 rounded-full ">
               <HiBars3 />
