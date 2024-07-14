@@ -47,12 +47,23 @@ function Products({ slice = [0, 8], heading }) {
                 <span className="absolute top-3 right-3 text-lg text-[#303237]">
                   <LuHeart />
                 </span>
-
-                <Link
-                  to={`/product_details/${item.id}`}
-                  className="h-64 relative overflow-hidden group"
-                >
-                
+<Link to={`/product_details/${item?.id}`}>
+                <div className="h-64 relative flex-center overflow-hidden group mx-auto">
+                  <img
+                    src={`https://api.timbu.cloud/images/${item?.photos[0]?.url}`}
+                    alt={item?.name}
+                    className="w-[300px] flex-center  h-64 object-cover transition-opacity duration-300 group-hover:opacity-0"
+                  />
+                  <img
+                    src={`https://api.timbu.cloud/images/${
+                      item?.photos[1]?.url
+                        ? item?.photos[1]?.url
+                        : item?.photos[0]?.url
+                    }`}
+                    alt={item?.name}
+                    className="w-[300px] flex-center mx-auto h-64 object-cover transition-opacity duration-300 absolute inset-0 opacity-0 group-hover:opacity-100"
+                  />
+                </div> 
                 </Link>
                 <Link to={`/product_details/${item.id}`}>
                   <div className="mt-3">
