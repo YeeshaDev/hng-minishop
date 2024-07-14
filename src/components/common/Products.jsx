@@ -7,9 +7,9 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 function Products({ slice = [0, 8], heading }) {
   const { data: productdata, error, isLoading } = useProducts();
-  console.log("products", productdata);
+  //console.log("products", productdata);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <p className="flex-center m-auto py-12">Loading Products...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
   const slicedProducts = productdata?.items?.slice(slice[0], slice[1]);
@@ -52,16 +52,7 @@ function Products({ slice = [0, 8], heading }) {
                   to={`/product_details/${item.id}`}
                   className="h-64 relative overflow-hidden group"
                 >
-                  <img
-                    src={`https://api.timbu.cloud/images/${item.photos[0].url}`}
-                    alt={item.name}
-                    className="w-[300px] h-64 object-cover transition-opacity duration-300 group-hover:opacity-0"
-                  />
-                  <img
-                    src={`https://api.timbu.cloud/images/${item.photos[1].url}`}
-                    alt={item.name}
-                    className="w-[300px] h-64 object-cover transition-opacity duration-300 absolute inset-0 opacity-0 group-hover:opacity-100"
-                  />
+                
                 </Link>
                 <Link to={`/product_details/${item.id}`}>
                   <div className="mt-3">
