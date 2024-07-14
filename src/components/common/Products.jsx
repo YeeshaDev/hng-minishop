@@ -3,7 +3,7 @@ import { LuHeart } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import { useProducts } from "../../utils/getProducts";
 import Skeleton from "react-loading-skeleton";
-import 'react-loading-skeleton/dist/skeleton.css';
+import "react-loading-skeleton/dist/skeleton.css";
 
 function Products({ slice = [0, 8], heading }) {
   const { data: productdata, error, isLoading } = useProducts();
@@ -40,27 +40,41 @@ function Products({ slice = [0, 8], heading }) {
             ))
           : slicedProducts?.length > 0 &&
             slicedProducts.map((item, index) => (
-              <div key={index} className="relative  className border py-3 px-2 rounded-lg shadow-sm transition-transform transform ">
+              <div
+                key={index}
+                className="relative  className border py-3 px-2 rounded-lg shadow-sm transition-transform transform "
+              >
                 <span className="absolute top-3 right-3 text-lg text-[#303237]">
                   <LuHeart />
                 </span>
-             
-              <Link to={`/product_details/${item.id}`}>
-                <img
-                  src={`https://api.timbu.cloud/images/${item.photos[0].url}`}
-                  alt={item.name}
-                  className="w-[300px] h-64 object-cover transition-transform transform hover:scale-[1.03]"
-                />
+
+                <Link
+                  to={`/product_details/${item.id}`}
+                  className="h-64 relative overflow-hidden group"
+                >
+                  <img
+                    src={`https://api.timbu.cloud/images/${item.photos[0].url}`}
+                    alt={item.name}
+                    className="w-[300px] h-64 object-cover transition-opacity duration-300 group-hover:opacity-0"
+                  />
+                  <img
+                    src={`https://api.timbu.cloud/images/${item.photos[1].url}`}
+                    alt={item.name}
+                    className="w-[300px] h-64 object-cover transition-opacity duration-300 absolute inset-0 opacity-0 group-hover:opacity-100"
+                  />
                 </Link>
                 <Link to={`/product_details/${item.id}`}>
                   <div className="mt-3">
                     <p className="text-lightGray">-20% BLACK FRIDAY</p>
-                    <p className="text-textClr font-semibold uppercase">
+                    <p className="text-textClr uppercase line-clamp-1 font-semibold uppercase">
                       {item?.name ||
                         "Sterling Silver Diamond adjustable Engagement Wedding Ring"}
                     </p>
                     <p className="text-red-700 flex gap-x-2 font-semibold text-[18px]">
-                      ${item?.current_price[0]?.NGN[0]} <strike className="text-lightGray font-medium text-[15px]">$7.50</strike>
+                      ${item?.current_price[0]?.NGN[0]}{" "}
+                      <strike className="text-lightGray font-medium text-[15px]">
+                        $7.50
+                      </strike>
                     </p>
                   </div>
                 </Link>

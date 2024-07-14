@@ -3,20 +3,25 @@ import React, { useState } from "react";
 import { useProducts } from "../src/utils/getProducts";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
-import {motion} from 'framer-motion'
+import { motion } from "framer-motion";
 function SeeAllProducts() {
   const query = new URLSearchParams(useLocation().search);
   const pageQuery = query.get("page") ? parseInt(query.get("page")) : 1;
   const navigate = useNavigate();
   const [page, setPage] = useState(pageQuery);
-  const { data, error, isLoading } = useProducts(page, 10);
+  const { data, error, isLoading } = useProducts(page, 12);
 
   const handlePageChange = (newPage) => {
     setPage(newPage);
     navigate(`/products?page=${newPage}`);
   };
 
-  if (isLoading) return <p className='flex items-center py-10 justify-center m-auto'>Loading Produts...</p>;
+  if (isLoading)
+    return (
+      <p className="flex items-center py-10 justify-center m-auto">
+        Loading Produts...
+      </p>
+    );
   if (error) return <p>Error: {error.message}</p>;
 
   return (
@@ -30,9 +35,7 @@ function SeeAllProducts() {
       <h2 className="text-2xl sm:text-3xl text-center my-7 font-semibold">
         All Products
       </h2>
-      < motion.section
-      
-       className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+      <motion.section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         {data?.items?.length > 0 &&
           data?.items.map((product) => (
             <article
@@ -40,16 +43,27 @@ function SeeAllProducts() {
               className="border py-3 px-2 rounded-lg shadow-sm transition-transform transform "
             >
               <Link to={`/product_details/${product.id}`}>
-                <img
-                  src={`https://api.timbu.cloud/images/${product.photos[0].url}`}
-                  alt={product.name}
-                  className="w-[300px] h-64 object-cover transition-transform transform hover:scale-[1.03]"
-                />
-                <h3 className="text-lg font-medium mt-3 px-3 capitalize">
+                <div className="h-64 relative flex-center overflow-hidden group mx-auto">
+                  <img
+                    src={`https://api.timbu.cloud/images/${product.photos[0].url}`}
+                    alt={product?.name}
+                    className="w-[300px] flex-center  h-64 object-cover transition-opacity duration-300 group-hover:opacity-0"
+                  />
+                  <img
+                    src={`https://api.timbu.cloud/images/${
+                      product?.photos[1]?.url
+                        ? product?.photos[1]?.url
+                        : product?.photos[0]?.url
+                    }`}
+                    alt={product?.name}
+                    className="w-[300px] flex-center mx-auto h-64 object-cover transition-opacity duration-300 absolute inset-0 opacity-0 group-hover:opacity-100"
+                  />
+                </div>
+                <h3 className="text-textClr uppercase line-clamp-1 font-semibold uppercase font-medium mt-3 px-3 ">
                   {product?.name}
                 </h3>
                 <p className="text-red-600 font-medium px-3">
-                  ${product?.current_price?.["NGN"]?.[0] || 50}
+                  ${product?.current_price[0]?.NGN[0]}{" "}
                 </p>
               </Link>
             </article>

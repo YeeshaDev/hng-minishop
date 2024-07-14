@@ -76,6 +76,7 @@ const cartSlice = createSlice({
     },
     clearCart(state) {
       state.data = [];
+      state.totalItems = 0;
       storeInLocalStorage(state.data);
       toast.success("Cart cleared successfully!");
     },
@@ -87,10 +88,14 @@ const cartSlice = createSlice({
 
       state.totalItems = state.data.length;
     },
-    
   },
 });
 
-export const { addToCart, updateQuantity, removeItem, getCartTotal,clearCart } =
-  cartSlice.actions;
+export const {
+  addToCart,
+  updateQuantity,
+  removeItem,
+  getCartTotal,
+  clearCart,
+} = cartSlice.actions;
 export default cartSlice.reducer;
