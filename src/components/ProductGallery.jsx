@@ -19,9 +19,9 @@ const ProductGallery = ({ productDet }) => {
         />
       </div>
       {/* PRODUCT IMAGES - THUMBNAILS */}
-      <div className="flex md:flex-col overflow-x-auto mt-10 md:mt-0 lg:mt-3 gap-3 gap-y-8">
+      <div className="flex md:flex-col overflow-x-auto mt-3 md:mt-0 lg:mt-3 gap-3 gap-y-8">
         {productDet?.photos?.length > 0 &&
-          productDet?.photos.slice(0,3).map((item, index) => (
+          productDet?.photos.slice(0, 3).map((item, index) => (
             <div
               key={index}
               className="flex md:flex-col sm:mt-3 gap-3 gap-y-8"
@@ -31,7 +31,9 @@ const ProductGallery = ({ productDet }) => {
                 width={120}
                 height={110}
                 src={`https://api.timbu.cloud/images/${item?.url}`}
-                className="border-2 border-textClr cursor-pointer"
+                className={` ${
+                  selectedImage == item?.url ? " border  border-textClr" : ""
+                }  object-contain lg:object-cover cursor-pointer`}
               />
             </div>
           ))}

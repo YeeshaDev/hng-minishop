@@ -10,7 +10,7 @@ import { addToCart, updateQuantity } from "../src/redux/cartSlice";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import ProductGallery from "../src/components/ProductGallery";
-import ProductTab from '../src/components/ProductTab'
+import ProductTab from "../src/components/ProductInfoTab";
 
 function ProductDetails() {
   const { id } = useParams();
@@ -22,7 +22,12 @@ function ProductDetails() {
     existingProduct ? existingProduct?.quantity : 1
   );
 
-  if (isLoading) return <p className='flex items-center py-10 justify-center m-auto'>Loading product details...</p>;
+  if (isLoading)
+    return (
+      <p className="flex items-center py-10 justify-center m-auto">
+        Loading product details...
+      </p>
+    );
   if (error) return <p>Error: {error.message}</p>;
 
   const handleAddToCart = () => {
@@ -40,7 +45,6 @@ function ProductDetails() {
           totalPrice: productDet.current_price * quantity,
         })
       );
-      //toast.success("Item added to cart successfully!");
     }
   };
 
@@ -52,17 +56,14 @@ function ProductDetails() {
     setQuantity((prevQuantity) => Math.max(1, prevQuantity - 1));
   };
 
-  console.log("product details", productDet);
-
-  
   return (
     <main>
       <section className="lg:flex justify-between gap-x-16 mt-8">
         <article className="w-full lg:max-w-[53%] px-3 lg:px-0">
           {/* PRODUCT IMAGES */}
           <ProductGallery productDet={productDet} />
-          {/** PODUCT DESCRIPTION, REVIEWS */}
-         <ProductTab productDet={productDet} />
+          {/** PRODUCT DESCRIPTION, REVIEWS */}
+          <ProductTab productDet={productDet} />
         </article>
 
         {/** PRODUCT INFORMATION */}
@@ -189,7 +190,7 @@ function ProductDetails() {
       </section>
       <Banner />
       <section className="my-10 px-4">
-        <Products heading='Similar Products' slice={[4,8]} />
+        <Products heading="Similar Products" slice={[4, 8]} />
       </section>
 
       <section className="flex flex-col sm:flex-row items-center justify-center gap-6 my-8">
