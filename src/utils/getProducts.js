@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 
 const fetchProducts = async (page = 1, size = 10) => {
   const { data } = await axios.get(
-    `https://timbu-get-all-products.reavdev.workers.dev/?organization_id=${
+    `https://api.timbu.cloud/products?organization_id=${
       import.meta.env.VITE_ORG_ID
     }&reverse_sort=false&page=${page}&size=${size}&Appid=${
       import.meta.env.VITE_APP_ID
@@ -15,7 +15,7 @@ const fetchProducts = async (page = 1, size = 10) => {
 
 const fetchProductDetails = async (productId) => {
   const { data } = await axios.get(
-    `https://timbu-get-single-product.reavdev.workers.dev/${productId}?organization_id=${
+    `https://api.timbu.cloud/products/${productId}?organization_id=${
       import.meta.env.VITE_ORG_ID
     }&Appid=${import.meta.env.VITE_APP_ID}&Apikey=${
       import.meta.env.VITE_API_KEY
